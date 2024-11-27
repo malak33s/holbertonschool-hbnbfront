@@ -13,14 +13,22 @@
         </nav>
     </header>
     <main>
+        <!-- Section pour le filtre -->
         <section id="filter">
             <label for="price-filter">Max Price:</label>
             <select id="price-filter">
-                <!-- Options will be populated dynamically -->
+                <!-- Options pour filtrer par prix seront ajoutées dynamiquement -->
             </select>
         </section>
+
+        <!-- Indicateur de chargement -->
+        <section id="loading" style="display: none;">
+            <p>Loading places, please wait...</p>
+        </section>
+
+        <!-- Section pour la liste des places -->
         <section id="places-list">
-            <!-- List of places will be populated dynamically -->
+            <!-- La liste des places sera ajoutée ici -->
         </section>
     </main>
     <script src="scripts.js"></script>

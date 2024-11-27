@@ -1,54 +1,83 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Capter l'événement de soumission du formulaire de connexion
-    document.getElementById("login-form").addEventListener("submit", function(event) {
-        // Empêcher l'envoi du formulaire et le rechargement de la page
-        event.preventDefault();
-        
-        // Récupérer les valeurs des champs email et password
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+    // URL de l'API
+    const apiUrl = 'http://localhost:5000/api/places'; // Change l'URL selon ton API
 
-        // Appeler la fonction pour envoyer les données au backend (API)
-        loginUser(email, password);
+    // Sélection des éléments
+    const placesList = document.getElementById('places-list');
+    const priceFilter = document.getElementById('price-filter');
+    const loadingIndicator = document.getElementById('loading');
+
+    // Charger les places depuis l'API
+    const fetchPlaces = async () => {
+        try {
+            // Afficher l'indicateur de chargement
+            loadingIndicator.style.display = 'block';
+
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error('Erreur lors de la récupération des données.');
+            }
+            const places = await response.json();
+
+            // Masquer l'indicateur de chargement
+            loadingIndicator.style.display = 'none';
+
+            // Remplir la liste des places
+            populatePlaces(places);
+
+            // Remplir les options du filtre
+            populateFilterOptions(places);
+        } catch (error) {
+            console.error('Erreur:', error);
+        }
+    };
+
+    // Afficher les places dans la liste
+    const populatePlaces = (places) => {
+        placesList.innerHTML = ''; // Réinitialiser la liste
+        places.forEach((place) => {
+            // Créer une carte pour chaque place
+            const placeCard = document.createElement('div');
+            placeCard.classList.add('place-card');
+            placeCard.innerHTML = `
+                <h3>${place.name}</h3>
+                <p>Price: $${place.price_per_night}</p>
+                <button class="details-button" data-id="${place.id}">View Details</button>
+            `;
+            placesList.appendChild(placeCard);
+        });
+    };
+
+    // Remplir les options du filtre
+    const populateFilterOptions = (places) => {
+        const prices = [...new Set(places.map((place) => place.price_per_night))];
+        priceFilter.innerHTML = '<option value="">All Prices</option>'; // Option par défaut
+        prices.sort((a, b) => a - b).forEach((price) => {
+            const option = document.createElement('option');
+            option.value = price;
+            option.textContent = `$${price}`;
+            priceFilter.appendChild(option);
+        });
+    };
+
+    // Filtrer les places en fonction du prix sélectionné
+    priceFilter.addEventListener('change', async (event) => {
+        const selectedPrice = event.target.value;
+
+        try {
+            const response = await fetch(apiUrl);
+            const places = await response.json();
+
+            const filteredPlaces = selectedPrice
+                ? places.filter((place) => place.price_per_night == selectedPrice)
+                : places;
+
+            populatePlaces(filteredPlaces);
+        } catch (error) {
+            console.error('Erreur lors du filtrage:', error);
+        }
     });
 
-    // Fonction pour envoyer les données de connexion à l'API et gérer la réponse
-    function loginUser(email, password) {
-        // URL de ton API pour la connexion (à remplacer par la vraie URL de ton backend)
-        const apiUrl = "https://ton-api.com/login";  // Remplace cela par ton API réelle
-
-        // Créer un objet avec les données à envoyer (email et password)
-        const data = {
-            email: email,
-            password: password
-        };
-
-        // Envoi de la requête à l'API via la méthode POST avec Fetch API
-        fetch(apiUrl, {
-            method: 'POST',  // Méthode HTTP POST
-            headers: {
-                'Content-Type': 'application/json'  // On envoie les données en JSON
-            },
-            body: JSON.stringify(data)  // On convertit les données en format JSON
-        })
-        .then(response => response.json())  // Si la réponse est en JSON
-        .then(data => {
-            // Vérifier si l'API renvoie un token JWT
-            if (data.token) {
-                // Sauvegarder le token dans le localStorage pour gérer la session
-                localStorage.setItem('auth_token', data.token);
-
-                // Rediriger l'utilisateur vers la page index.html
-                window.location.href = "index.html";
-            } else {
-                // Si l'authentification échoue, afficher un message d'erreur
-                alert("Email ou mot de passe incorrect");
-            }
-        })
-        .catch(error => {
-            // Gérer les erreurs de l'API ou autres problèmes de réseau
-            console.error('Error:', error);
-            alert("Erreur lors de la connexion");
-        });
-    }
+    // Charger les données au chargement de la page
+    fetchPlaces();
 });

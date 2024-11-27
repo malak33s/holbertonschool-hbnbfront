@@ -1,25 +1,23 @@
-/* 
-  fichier ex pour aider a commencer
-*/
-
+/* Style global */
 * {
-    box-sizing: border-box; /*marge et bordure*/
+    box-sizing: border-box; /* Prise en compte des marges et des bordures */
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f4f4f4; /* Fond gris clair pour toute la page */
-    color: #333; /* Couleur du texte principale */
+    background-color: #f4f4f4; /* Fond gris clair */
+    color: #333; /* Couleur principale du texte */
+    line-height: 1.6;
 }
 
 /* Header */
 header {
-    background-color: #333; /* Fond sombre pour l'en-tête */
+    background-color: #333; /* Couleur sombre pour l’en-tête */
     color: #fff; /* Texte blanc */
     padding: 1rem;
-    text-align: center; /* Centrer le contenu dans l'en-tête */
+    text-align: center;
 }
 
 header .logo {
@@ -40,33 +38,38 @@ header .login-button {
 }
 
 header .login-button:hover {
-    background-color: #0056b3; /* Couleur de survol du bouton */
+    background-color: #0056b3; /* Couleur au survol */
 }
 
-/* Main contentenu principal */
+/* Contenu principal */
 main {
-    width: 100%;
-    max-width: 400px;
+    max-width: 900px; /* Largeur maximale pour toutes les pages */
     margin: 50px auto;
     padding: 20px;
-    background-color: white; /* Fond blanc pour le formulaire */
+    background-color: white; /* Fond blanc */
     border-radius: 10px; /* Coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce autour du formulaire */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
 }
 
 /* Formulaire de connexion */
 #login-form {
     display: flex;
-    flex-direction: column; /* Disposition verticale des éléments du formulaire */
+    flex-direction: column;
+    align-items: center; /* Centrer les éléments */
 }
 
 #login-form h2 {
-    text-align: center;
     margin-bottom: 20px;
 }
 
-/* Style des champs de saisie du formulaire */
+#login-form label {
+    width: 100%;
+    margin: 10px 0 5px;
+    text-align: left;
+}
+
 #login-form input {
+    width: 100%;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
@@ -75,7 +78,7 @@ main {
 }
 
 #login-form button {
-    padding: 10px;
+    padding: 10px 20px;
     background-color: #28a745; /* Couleur verte pour le bouton */
     color: white;
     border: none;
@@ -86,14 +89,88 @@ main {
 }
 
 #login-form button:hover {
-    background-color: #218838; /* Couleur au survol du bouton */
+    background-color: #218838; /* Couleur au survol */
 }
 
-/* pied de page */
+/* Section filtre */
+#filter {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#filter label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+#filter select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Liste des places */
+#places-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Répartition réactive */
+    gap: 20px;
+}
+
+.place-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    text-align: center;
+}
+
+.place-card:hover {
+    transform: scale(1.05); /* Zoom léger au survol */
+}
+
+.place-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.place-card p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.details-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.details-button:hover {
+    background-color: #555;
+}
+
+/* Section de chargement */
+#loading {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Pied de page */
 footer {
     text-align: center;
     font-size: 14px;
     padding: 10px 0;
     background-color: #333;
     color: white;
+    margin-top: 20px;
 }
