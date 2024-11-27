@@ -1,32 +1,99 @@
 /* 
-  This is a SAMPLE File to get you started. Follow the instructions on the project to complete the tasks. 
-  You'll probably need to override some of theese styles.
+  fichier ex pour aider a commencer
 */
 
 * {
-    box-sizing: border-box;
+    box-sizing: border-box; /*marge et bordure*/
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f4f4f4; /* Fond gris clair pour toute la page */
+    color: #333; /* Couleur du texte principale */
 }
 
+/* Header */
 header {
-    background-color: #333;
-    color: #fff;
+    background-color: #333; /* Fond sombre pour l'en-tête */
+    color: #fff; /* Texte blanc */
     padding: 1rem;
+    text-align: center; /* Centrer le contenu dans l'en-tête */
 }
 
-nav a {
-    color: #fff;
+header .logo {
+    font-size: 24px;
+    font-weight: bold;
     text-decoration: none;
-    margin-left: 1rem;
+    color: white;
 }
 
+header .login-button {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+header .login-button:hover {
+    background-color: #0056b3; /* Couleur de survol du bouton */
+}
+
+/* Main contentenu principal */
 main {
-    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white; /* Fond blanc pour le formulaire */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce autour du formulaire */
+}
+
+/* Formulaire de connexion */
+#login-form {
+    display: flex;
+    flex-direction: column; /* Disposition verticale des éléments du formulaire */
+}
+
+#login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style des champs de saisie du formulaire */
+#login-form input {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+#login-form button {
+    padding: 10px;
+    background-color: #28a745; /* Couleur verte pour le bouton */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#login-form button:hover {
+    background-color: #218838; /* Couleur au survol du bouton */
+}
+
+/* pied de page */
+footer {
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
 }
