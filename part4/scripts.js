@@ -1,34 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    loadPlaces();
+    const loginForm = document.getElementById('login-form');
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Empêche l'envoi classique du formulaire
+
+            const email = document.getElementById('email').value; // Récupère l'email
+            const password = document.getElementById('password').value; // Récupère le mot de passe
+
+            // Appeler la fonction login pour envoyer la requête
+            await loginUser(email, password);
+        });
+    }
 });
 
-// Fonction pour charger les places depuis l'API
-const loadPlaces = async () => {
+// Fonction pour envoyer la requête de connexion
+async function loginUser(email, password) {
     try {
-        const response = await fetch('http://127.0.0.1:5000/api/places');
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+        const response = await fetch('https://your-api-url/login', {  // Remplacez 'https://your-api-url/login' par l'URL réelle de ton API
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        // Vérifie si la réponse est OK (status 200-299)
+        if (response.ok) {
+            const data = await response.json(); // Récupère la réponse JSON contenant le token
+            // Sauvegarde le JWT dans un cookie
+            document.cookie = `token=${data.access_token}; path=/`;
+            // Redirige vers la page principale après la connexion
+            window.location.href = 'index.html';
+        } else {
+            // Si la connexion échoue, montre un message d'erreur
+            alert('Login failed: ' + response.statusText);
         }
-
-        const places = await response.json();
-        const placesList = document.getElementById('places-list');
-
-        if (places.length === 0) {
-            document.getElementById('loading').textContent = "No places found.";
-            return;
-        }
-
-        placesList.innerHTML = places.map(place => `
-            <div class="place-card">
-                <h3>${place.name}</h3>
-                <p>Price: $${place.price_per_night} per night</p>
-                <a href="place.html?id=${place.id}" class="details-button">View Details</a>
-            </div>
-        `).join("");
-
-        document.getElementById('loading').style.display = "none";
     } catch (error) {
-        console.error("Error loading places:", error);
-        document.getElementById('loading').textContent = "Failed to load places.";
+        console.error('Error during login:', error);
+        alert('An error occurred. Please try again.');
     }
-};
+}

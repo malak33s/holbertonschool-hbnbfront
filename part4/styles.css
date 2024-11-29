@@ -1,4 +1,4 @@
-/* Styles de base */
+/* Style général */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,10 +9,8 @@
 body {
     background-color: #f4f4f4;
     color: #333;
-    line-height: 1.6;
 }
 
-/* Header */
 header {
     background-color: #333;
     color: #fff;
@@ -20,62 +18,46 @@ header {
     text-align: center;
 }
 
-header nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-}
-
-header nav a:hover {
-    text-decoration: underline;
-}
-
-/* Main */
+/* Formulaire de connexion */
 main {
-    padding: 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    background: #fff;
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Cards */
-.place-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin: 20px 0;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background: #fff;
+#login-form {
+    display: flex;
+    flex-direction: column;
 }
 
-.place-card h3 {
-    margin-bottom: 10px;
+#login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.place-card p {
-    margin-bottom: 15px;
-}
-
-.details-button {
-    text-decoration: none;
-    padding: 10px 15px;
-    background: #007bff;
-    color: #fff;
+#login-form input {
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+#login-form button {
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.details-button:hover {
-    background: #0056b3;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    font-size: 0.9rem;
-    padding: 1rem 0;
-    background: #333;
-    color: white;
+#login-form button:hover {
+    background-color: #218838;
 }

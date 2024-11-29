@@ -1,25 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Place Details</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <a href="index.html">Back to List</a>
-        </nav>
-    </header>
-    <main>
-        <section id="place-details">
-            <!-- Les détails d'une place seront ajoutés dynamiquement -->
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 My Travel App. All rights reserved.</p>
-    </footer>
-    <script src="scripts.js"></script>
-</body>
-</html>
+import signUpUser from './4-user-promise';
+import uploadPhoto from './5-photo-reject';
+
+export default function handleProfileSignup(firstName, lastName, fileName) {
+  // deux fonctions arguments appropriés
+  const signUpPromise = signUpUser(firstName, lastName);
+  const uploadPhotoPromise = uploadPhoto(fileName);
+
+  // pour gérer les deux promesses
+  return Promise.allSettled([signUpPromise, uploadPhotoPromise])
+    .then((results) => 
+      results.map((result) => 
+        (result.status === 'fulfilled' 
+          ? { status: 'fulfilled', value: result.value } 
+          : { status: 'rejected', reason: result.reason })
+      )
+    );
+}
