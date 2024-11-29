@@ -17,20 +17,24 @@
         <section id="filter">
             <label for="price-filter">Max Price:</label>
             <select id="price-filter">
-                <!-- Options pour filtrer par prix seront ajoutées dynamiquement -->
+                <option value="">All</option>
+                <!-- Options dynamiques ajoutées par JS -->
             </select>
         </section>
 
         <!-- Indicateur de chargement -->
-        <section id="loading" style="display: none;">
+        <section id="loading" style="display: block;">
             <p>Loading places, please wait...</p>
         </section>
 
         <!-- Section pour la liste des places -->
         <section id="places-list">
-            <!-- La liste des places sera ajoutée ici -->
+            <!-- Les places seront ajoutées ici par le JS -->
         </section>
     </main>
+    <footer>
+        <p>© 2024 My Travel App. All rights reserved.</p>
+    </footer>
     <script src="scripts.js"></script>
 </body>
 </html>

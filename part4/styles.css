@@ -1,176 +1,81 @@
-/* Style global */
+/* Styles de base */
 * {
-    box-sizing: border-box; /* Prise en compte des marges et des bordures */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
 }
 
 body {
-    background-color: #f4f4f4; /* Fond gris clair */
-    color: #333; /* Couleur principale du texte */
+    background-color: #f4f4f4;
+    color: #333;
     line-height: 1.6;
 }
 
 /* Header */
 header {
-    background-color: #333; /* Couleur sombre pour l’en-tête */
-    color: #fff; /* Texte blanc */
+    background-color: #333;
+    color: #fff;
     padding: 1rem;
     text-align: center;
 }
 
-header .logo {
-    font-size: 24px;
-    font-weight: bold;
+header nav a {
+    color: #fff;
     text-decoration: none;
-    color: white;
+    font-size: 1.2rem;
 }
 
-header .login-button {
-    color: white;
-    text-decoration: none;
-    padding: 10px 20px;
-    background-color: #007bff;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s;
+header nav a:hover {
+    text-decoration: underline;
 }
 
-header .login-button:hover {
-    background-color: #0056b3; /* Couleur au survol */
-}
-
-/* Contenu principal */
+/* Main */
 main {
-    max-width: 900px; /* Largeur maximale pour toutes les pages */
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white; /* Fond blanc */
-    border-radius: 10px; /* Coins arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Formulaire de connexion */
-#login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrer les éléments */
-}
-
-#login-form h2 {
-    margin-bottom: 20px;
-}
-
-#login-form label {
-    width: 100%;
-    margin: 10px 0 5px;
-    text-align: left;
-}
-
-#login-form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-}
-
-#login-form button {
-    padding: 10px 20px;
-    background-color: #28a745; /* Couleur verte pour le bouton */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#login-form button:hover {
-    background-color: #218838; /* Couleur au survol */
-}
-
-/* Section filtre */
-#filter {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#filter label {
-    font-size: 18px;
-    margin-right: 10px;
-}
-
-#filter select {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Liste des places */
-#places-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Répartition réactive */
-    gap: 20px;
-}
-
+/* Cards */
 .place-card {
-    background-color: white;
     border: 1px solid #ddd;
     border-radius: 10px;
-    padding: 20px;
+    margin: 20px 0;
+    padding: 15px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    text-align: center;
-}
-
-.place-card:hover {
-    transform: scale(1.05); /* Zoom léger au survol */
+    background: #fff;
 }
 
 .place-card h3 {
-    font-size: 1.5rem;
-    color: #333;
     margin-bottom: 10px;
 }
 
 .place-card p {
-    font-size: 1rem;
-    color: #555;
     margin-bottom: 15px;
 }
 
 .details-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
+    text-decoration: none;
+    padding: 10px 15px;
+    background: #007bff;
+    color: #fff;
     border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .details-button:hover {
-    background-color: #555;
+    background: #0056b3;
 }
 
-/* Section de chargement */
-#loading {
-    text-align: center;
-    font-size: 18px;
-    color: #666;
-}
-
-/* Pied de page */
+/* Footer */
 footer {
     text-align: center;
-    font-size: 14px;
-    padding: 10px 0;
-    background-color: #333;
+    font-size: 0.9rem;
+    padding: 1rem 0;
+    background: #333;
     color: white;
-    margin-top: 20px;
 }
